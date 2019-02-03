@@ -1,20 +1,20 @@
 import React,  {useRef} from 'react'
+import { Scrollbars } from 'react-custom-scrollbars'
 import styled from 'styled-components'
 import {getBackground} from '../helper/parser'
 
 const Input = styled.div`
-  padding: 10px 20px;
+  padding: 10px;
   width: 100%;
-  margin: 10px 0;
   display: block;
-  background-color: ${props => props.bgColor ? props.bgColor : "#eee"};
   border-radius: 10px;
+
   border: none;
-  transition: all 200ms ease;
+  // transition: all 200ms ease;
 
   &:focus {
     outline: none;
-    box-shadow: 0px 0px 1px 2px rgba(65, 83, 184, 0.7);
+    // box-shadow: 0px 0px 1px 2px rgba(65, 83, 184, 0.7);
   }
 
   ::-webkit-input-placeholder {
@@ -31,13 +31,17 @@ const Input = styled.div`
   }
 `
 
-export default function ({onSubmit, onBackgroundChange,...props}) {
+export default function ({onSubmit, onBackgroundChange, value, onInput, ...props}) {
   const input = useRef()
 
   const onKeyDown = (e) => {
     // Ctrl Enter
     if (e.keyCode === 13 && e.metaKey) {
       onSubmit(input.current.innerHTML)
+      input.current.innerHTML = ""
+      setTimeout(() => {
+        onBackgroundChange(getBackground(null))
+      }, 0);
     }
   }
 
@@ -56,8 +60,16 @@ export default function ({onSubmit, onBackgroundChange,...props}) {
       onBackgroundChange(getBackground(htmlText))
     }, 0);
   }
+
+  const _onInput = (e) => {
+    onInput(e.target.innerHTML)
+  }
  
   return (
-    <Input contentEditable {...props} ref={input} onKeyDown={onKeyDown} onPaste={onPaste} />
+    <Scrollbars autoHeight autoHeightMax={400} autoHeightMin={0}
+    thumbMinSize={30}
+    universal={true}>
+      <Input contentEditable {...props} ref={input} onKeyDown={onKeyDown} onPaste={onPaste} onInput={_onInput}></Input>
+    </Scrollbars>
   )
 }

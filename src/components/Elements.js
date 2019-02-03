@@ -4,7 +4,6 @@ import styled from 'styled-components'
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
-  padding: 40px
   max-width: 1400px;
   margin: auto;
   height: 100vh;
@@ -21,6 +20,7 @@ export const ChatContainer = styled.div`
   border-radius: 30px;
   justify-content: space-between;
   padding: 10px 20px;
+  margin: 20px;
 
   @media only screen and (max-width: 900px) {
     flex-direction: column;
@@ -38,12 +38,12 @@ export const ChatContainer = styled.div`
 export const WelcomeCard = styled.div`
   max-width: 300px;
   min-width: 200px;
-
+  padding: 20px 10px;
   display: flex;
   flex-direction: column;
 
   @media only screen and (max-width: 900px) {
-    order: 2;
+    display: none;
     text-align: center;
     max-width: 100%;
     margin-top: 20px;
@@ -126,12 +126,14 @@ export const Button = styled.button`
 
 export const SubmitButton = styled.button`
   padding: 10px 14px;
-  color: white;
-  background: rgba(65, 83, 184, 1);
+  color: rgba(65, 83, 184, 1);
   border: none;
   margin: 0;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bold;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
 `
 
 export const Title = styled.h1`

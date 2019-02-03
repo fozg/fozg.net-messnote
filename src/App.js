@@ -1,12 +1,12 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 
-import {ChatContainer, Container} from './components/Elements'
+import {ChatContainer, Container, SubmitButton, SrOnly} from './components/Elements'
 import Input from './components/Input'
+import InputWrapper from './components/InputWrapper'
 import Welcome from './components/Welcome'
 import Chat from './components/Chat'
 
 export default () => {
-  const inputMessage = useRef(null)
   const defaultMess = [
     {
       created: new Date(),
@@ -20,10 +20,11 @@ export default () => {
     },
   ]
   const [messages, setMessages]  = useState(defaultMess)
-  const [bgColor, setBgColor] = useState('#eee');
+  const [bgColor, setBgColor] = useState(null)
+  const [inputValue, setInputValue] = useState()
 
-  const onSubmit = function(htmlValue) {
-    let message = htmlValue
+  const onSubmit = function() {
+    let message = inputValue
     setMessages(
       [...messages, {
         created: new Date(), 
@@ -39,17 +40,26 @@ export default () => {
     setBgColor(color)
   }
 
+  const _onInput = value => {
+    setInputValue(value)
+  }
+
   return (
     <Container>
       <Welcome />
       <ChatContainer>
         <Chat messages={messages} />
-        <Input 
-          placeholder="Enter some note"
-          onSubmit={onSubmit}
-          onBackgroundChange={_onBackgroundChange}
+        <InputWrapper 
           bgColor={bgColor}
-        />
+        >
+          <Input 
+            placeholder="Enter some note"
+            onSubmit={onSubmit}
+            onBackgroundChange={_onBackgroundChange}
+            onInput={_onInput}
+          />
+          <SubmitButton onClick={onSubmit}>Send</SubmitButton>
+        </InputWrapper>
       </ChatContainer>
     </Container>
   )
