@@ -41,6 +41,7 @@ export const WelcomeCard = styled.div`
   padding: 20px 10px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 
   @media only screen and (max-width: 900px) {
     display: none;
@@ -146,4 +147,12 @@ export const SubTitle = styled.h3`
   font-weight: 400;
   color: ${props => props.color};
   margin: 0;
+`
+
+export const Description = styled.h4`
+  font-weight: 400;
+  color: ${props => props.color};
+  margin: 10px 0;
+  color: #555;
+  line-height: 1.35;
 `

@@ -1,12 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-// import './index.css'
 import Main from './App'
-import nomalize from 'normalize.css'
 import {createGlobalStyle} from 'styled-components'
+import {MessnoteState} from './context/MessnoteContext'
 
 const GlobalStyled = createGlobalStyle`
-  ${nomalize}
   body {
     margin: 0;
     padding: 0;
@@ -15,7 +13,7 @@ const GlobalStyled = createGlobalStyle`
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #ecefff;
+    background-color: #fffac5;
   }
   
   code {
@@ -36,10 +34,10 @@ const GlobalStyled = createGlobalStyle`
 
 function App() {
   return (
-    <>
+    <MessnoteState>
       <GlobalStyled />
       <Main />
-    </>
+    </MessnoteState>
   )
 }
 

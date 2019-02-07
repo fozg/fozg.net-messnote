@@ -1,7 +1,7 @@
 import React,  {useRef} from 'react'
 import { Scrollbars } from 'react-custom-scrollbars'
 import styled from 'styled-components'
-import {getBackground} from '../helper/parser'
+import {getBackground} from '../utils/color_helper'
 
 const Input = styled.div`
   padding: 10px;
@@ -31,16 +31,17 @@ const Input = styled.div`
   }
 `
 
-export default function ({onSubmit, onBackgroundChange, value, onInput, ...props}) {
+export default function ({onSubmit, onFoundBackgroundColor, value, onInput, ...props}) {
   const input = useRef()
 
   const onKeyDown = (e) => {
     // Ctrl Enter
-    if (e.keyCode === 13 && e.metaKey) {
+    if (e.keyCode === 13 && ( !e.shiftKey)) {
+      e.preventDefault();
       onSubmit(input.current.innerHTML)
       input.current.innerHTML = ""
       setTimeout(() => {
-        onBackgroundChange(getBackground(null))
+        onFoundBackgroundColor(getBackground(null))
       }, 0);
     }
   }
@@ -57,7 +58,7 @@ export default function ({onSubmit, onBackgroundChange, value, onInput, ...props
 
   const processChangeBackground = (htmlText) => {
     setTimeout(() => {
-      onBackgroundChange(getBackground(htmlText))
+      onFoundBackgroundColor(getBackground(htmlText))
     }, 0);
   }
 
@@ -69,7 +70,9 @@ export default function ({onSubmit, onBackgroundChange, value, onInput, ...props
     <Scrollbars autoHeight autoHeightMax={400} autoHeightMin={0}
     thumbMinSize={30}
     universal={true}>
-      <Input contentEditable {...props} ref={input} onKeyDown={onKeyDown} onPaste={onPaste} onInput={_onInput}></Input>
+      <Input 
+        contentEditable {...props} ref={input} onKeyDown={onKeyDown} onPaste={onPaste} onInput={_onInput}
+      ></Input>
     </Scrollbars>
   )
 }

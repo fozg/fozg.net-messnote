@@ -1,0 +1,3 @@
+export default {
+  USER_INFO_STORAGE_KEY: 'USERINFO_MESSNOTE',
+}
