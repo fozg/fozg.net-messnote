@@ -42,7 +42,7 @@ export const WelcomeCard = styled.div`
   flex-direction: column;
   justify-content: space-between;
 
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: 1200px) {
     display: none;
     text-align: center;
     max-width: 100%;

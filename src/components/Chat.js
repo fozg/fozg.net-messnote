@@ -20,6 +20,12 @@ const Bubble = styled.div`
   border-radius: 20px;
   box-shadow: 0 2px 4px 0 rgba(210, 210, 210, 0.5);
   cursor: ${props => (props.isLinkify ? "pointer" : "default")};
+
+  img {
+    @media only screen and (min-width: 900px) {
+      max-width: 800px !important;
+    }
+  }
 `;
 
 // const ButtonsContainer = styled.div`
