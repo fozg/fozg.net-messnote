@@ -1,54 +1,72 @@
+import React, { useState, useEffect } from "react";
+import Auth from "../auth";
+import MessnoteApi from "../api/messnote";
 
-import React, { useState, useEffect } from 'react'
-import Auth from '../auth'
-
-export const MessnoteContext = React.createContext()
+export const MessnoteContext = React.createContext();
 
 export const MessnoteState = ({ children }) => {
-  const [enabledMessnoteInput, setEnabledMessnoteInput] = useState(false)
-  const [messnotes, setMessnotes] = useState([
-    {
-      created: new Date(),
-      message: 'I am Messnoter. Give note to me',
-      createdBy: 'bot'
-    },
-  ])
+  const [enabledMessnoteInput, setEnabledMessnoteInput] = useState(false);
+  const [messnotes, setMessnotes] = useState([]);
 
-  const addMessnote = (messnote) => {
-    setMessnotes(messnotes.concat(messnote))
-  }
+  const addMessnote = ({ body, backgroundColor }) => {
+    new MessnoteApi().add_messnote(body, backgroundColor).then(response => {
+      appendMessnotes(response);
+    });
+  };
+
+  const appendMessnotes = newMessnotes => {
+    setMessnotes(prevMessnotes => prevMessnotes.concat(newMessnotes));
+  };
 
   useEffect(() => {
-    let authedUser = Auth.isAuthen()
-    if (authedUser) {
-      setEnabledMessnoteInput(true)
-      addMessnote({
-        created: new Date(),
-        message: 'Welcome back @' + authedUser.username,
-        createdBy: 'bot',
-      },)
+    let auth = Auth.isAuthen();
+    if (auth) {
+      setEnabledMessnoteInput(true);
+      setTimeout(() => {
+        appendMessnotes({
+          created: new Date(),
+          body: "Welcome back @" + auth.username,
+          createdBy: "bot"
+        });
+      }, 500);
     } else {
       addMessnote([
         {
           created: new Date(),
-          message: 'You need to login first',
-          createdBy: 'bot',
+          body: "You need to login first",
+          createdBy: "bot"
         },
         {
           created: new Date(),
-          message: 'Click me to login',
-          createdBy: 'bot',
-          backgroundColor: '#4caf50',
-          textColor: '#fff',
-          linktify: {url: 'https://accounts.fozg.net/signin'}
-        },
-      ])
+          body: "Click me to login",
+          createdBy: "bot",
+          backgroundColor: "#4caf50",
+          textColor: "#fff",
+          linktify: { url: "https://accounts.fozg.net/signin" }
+        }
+      ]);
     }
-  }, messnotes.length)
+  }, enabledMessnoteInput);
+
+  useEffect(() => {
+    new MessnoteApi().get_all_messnote().then(response => {
+      if (response.length === 0) {
+        appendMessnotes({
+          created: new Date(),
+          body: "I am Messnoter. Give note to me",
+          createdBy: "bot"
+        });
+      } else {
+        appendMessnotes(response);
+      }
+    });
+  }, false);
 
   return (
-    <MessnoteContext.Provider value={{ messnotes, addMessnote, enabledMessnoteInput }}>
+    <MessnoteContext.Provider
+      value={{ messnotes, addMessnote, enabledMessnoteInput }}
+    >
       {children}
     </MessnoteContext.Provider>
-  )
-}
+  );
+};

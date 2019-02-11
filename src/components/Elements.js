@@ -1,5 +1,4 @@
-import styled from 'styled-components'
-
+import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
@@ -7,7 +6,7 @@ export const Container = styled.div`
   max-width: 1400px;
   margin: auto;
   height: 100vh;
-`
+`;
 
 export const ChatContainer = styled.div`
   display: flex;
@@ -33,7 +32,7 @@ export const ChatContainer = styled.div`
     padding: 10px;
     margin: 10px;
   }
-`
+`;
 
 export const WelcomeCard = styled.div`
   max-width: 300px;
@@ -49,7 +48,7 @@ export const WelcomeCard = styled.div`
     max-width: 100%;
     margin-top: 20px;
   }
-`
+`;
 
 export const Mobile = styled.div`
   min-width: 320px;
@@ -68,7 +67,7 @@ export const Mobile = styled.div`
     padding-top: 30px;
     margin: auto;
   }
-`
+`;
 
 export const MobileBg = styled.img`
   position: absolute;
@@ -90,12 +89,12 @@ export const MobileBg = styled.img`
     transform: translateX(-10%);
     width: 120%;
   }
-`
+`;
 
 export const ButtonsContainer = styled.div`
   display: flex;
   flex-flow: wrap;
-`
+`;
 
 export const SrOnly = styled.div`
   position: absolute;
@@ -106,7 +105,7 @@ export const SrOnly = styled.div`
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;
-`
+`;
 
 export const Button = styled.button`
   color: #889097;
@@ -123,7 +122,7 @@ export const Button = styled.button`
     color: #222;
     outline: none;
   }
-`
+`;
 
 export const SubmitButton = styled.button`
   padding: 10px 14px;
@@ -135,19 +134,19 @@ export const SubmitButton = styled.button`
   background-color: transparent;
   cursor: pointer;
   outline: none;
-`
+`;
 
 export const Title = styled.h1`
   font-weight: 800;
   color: ${props => props.color};
   margin: 5px 0;
-`
+`;
 
 export const SubTitle = styled.h3`
   font-weight: 400;
   color: ${props => props.color};
   margin: 0;
-`
+`;
 
 export const Description = styled.h4`
   font-weight: 400;
@@ -155,4 +154,4 @@ export const Description = styled.h4`
   margin: 10px 0;
   color: #555;
   line-height: 1.35;
-`
+`;

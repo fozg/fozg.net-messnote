@@ -1,8 +1,8 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import Main from './App'
-import {createGlobalStyle} from 'styled-components'
-import {MessnoteState} from './context/MessnoteContext'
+import React from "react";
+import ReactDOM from "react-dom";
+import Main from "./App";
+import { createGlobalStyle } from "styled-components";
+import { MessnoteState } from "./context/MessnoteContext";
 
 const GlobalStyled = createGlobalStyle`
   body {
@@ -30,7 +30,7 @@ const GlobalStyled = createGlobalStyle`
     display: block; /* For Firefox */
     color: #ccc;
   }
-`
+`;
 
 function App() {
   return (
@@ -38,7 +38,7 @@ function App() {
       <GlobalStyled />
       <Main />
     </MessnoteState>
-  )
+  );
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<App />, document.getElementById("root"));

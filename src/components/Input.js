@@ -1,7 +1,7 @@
-import React,  {useRef} from 'react'
-import { Scrollbars } from 'react-custom-scrollbars'
-import styled from 'styled-components'
-import {getBackground} from '../utils/color_helper'
+import React, { useRef } from "react";
+import { Scrollbars } from "react-custom-scrollbars";
+import styled from "styled-components";
+import { getBackground } from "../utils/color_helper";
 
 const Input = styled.div`
   padding: 10px;
@@ -29,50 +29,66 @@ const Input = styled.div`
     color: rgba(136, 144, 151, 0.7);
     font-style: italic;
   }
-`
+`;
 
-export default function ({onSubmit, onFoundBackgroundColor, value, onInput, ...props}) {
-  const input = useRef()
+export default function({
+  onSubmit,
+  onFoundBackgroundColor,
+  value,
+  onInput,
+  ...props
+}) {
+  const input = useRef();
 
-  const onKeyDown = (e) => {
+  const onKeyDown = e => {
     // Ctrl Enter
-    if (e.keyCode === 13 && ( !e.shiftKey)) {
+    if (e.keyCode === 13 && !e.shiftKey) {
       e.preventDefault();
-      onSubmit(input.current.innerHTML)
-      input.current.innerHTML = ""
+      onSubmit(input.current.innerHTML);
+      input.current.innerHTML = "";
       setTimeout(() => {
-        onFoundBackgroundColor(getBackground(null))
+        onFoundBackgroundColor(getBackground(null));
       }, 0);
     }
-  }
+  };
 
-  const onPaste = (e) => {
-    var pastedText = undefined
-    if (window.clipboardData && window.clipboardData.getData) { // IE
-      pastedText = window.clipboardData.getData('Text')
+  const onPaste = e => {
+    var pastedText = undefined;
+    if (window.clipboardData && window.clipboardData.getData) {
+      // IE
+      pastedText = window.clipboardData.getData("Text");
     } else if (e.clipboardData && e.clipboardData.getData) {
-      pastedText = e.clipboardData.getData('text/html')
+      pastedText = e.clipboardData.getData("text/html");
     }
-    processChangeBackground(pastedText)
-  }
+    processChangeBackground(pastedText);
+  };
 
-  const processChangeBackground = (htmlText) => {
+  const processChangeBackground = htmlText => {
     setTimeout(() => {
-      onFoundBackgroundColor(getBackground(htmlText))
+      onFoundBackgroundColor(getBackground(htmlText));
     }, 0);
-  }
+  };
 
-  const _onInput = (e) => {
-    onInput(e.target.innerHTML)
-  }
- 
+  const _onInput = e => {
+    onInput(e.target.innerHTML);
+  };
+
   return (
-    <Scrollbars autoHeight autoHeightMax={400} autoHeightMin={0}
-    thumbMinSize={30}
-    universal={true}>
-      <Input 
-        contentEditable {...props} ref={input} onKeyDown={onKeyDown} onPaste={onPaste} onInput={_onInput}
-      ></Input>
+    <Scrollbars
+      autoHeight
+      autoHeightMax={400}
+      autoHeightMin={0}
+      thumbMinSize={30}
+      universal={true}
+    >
+      <Input
+        contentEditable
+        {...props}
+        ref={input}
+        onKeyDown={onKeyDown}
+        onPaste={onPaste}
+        onInput={_onInput}
+      />
     </Scrollbars>
-  )
+  );
 }
