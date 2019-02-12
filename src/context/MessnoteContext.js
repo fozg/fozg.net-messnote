@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Auth from "../auth";
 import MessnoteApi from "../api/messnote";
+import consts from "../consts";
 
 export const MessnoteContext = React.createContext();
 
@@ -30,7 +31,7 @@ export const MessnoteState = ({ children }) => {
         });
       }, 500);
     } else {
-      addMessnote([
+      appendMessnotes([
         {
           created: new Date(),
           body: "You need to login first",
@@ -42,24 +43,29 @@ export const MessnoteState = ({ children }) => {
           createdBy: "bot",
           backgroundColor: "#4caf50",
           textColor: "#fff",
-          linktify: { url: "https://accounts.fozg.net/signin" }
+          linktify: { url: consts.AUTHEN_URL }
         }
       ]);
     }
   }, enabledMessnoteInput);
 
   useEffect(() => {
-    new MessnoteApi().get_all_messnote().then(response => {
-      if (response.length === 0) {
-        appendMessnotes({
-          created: new Date(),
-          body: "I am Messnoter. Give note to me",
-          createdBy: "bot"
-        });
-      } else {
-        appendMessnotes(response);
-      }
-    });
+    new MessnoteApi()
+      .get_all_messnote()
+      .then(response => {
+        if (response.length === 0) {
+          appendMessnotes({
+            created: new Date(),
+            body: "I am Messnoter. Give note to me",
+            createdBy: "bot"
+          });
+        } else {
+          appendMessnotes(response);
+        }
+      })
+      .catch(() => {
+        // alert("Forbiden");
+      });
   }, false);
 
   return (

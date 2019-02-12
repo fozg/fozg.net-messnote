@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import { ChatContainer, Container, SubmitButton } from "./components/Elements";
 import Input from "./components/Input";

@@ -10,7 +10,7 @@ export default class MessnoteApi {
   }
 
   get_all_messnote() {
-    return api_call("GET", consts.API_MESSNOTE_URL, null, this.token);
+    return api_call("GET", consts.API_MESSNOTE_URL, null, this.token, true);
   }
 
   add_messnote(body, backgroundColor) {
@@ -18,7 +18,12 @@ export default class MessnoteApi {
       "POST",
       consts.API_MESSNOTE_URL,
       { body, backgroundColor },
-      this.token
+      this.token,
+      true
     );
+  }
+
+  get_current_user() {
+    return api_call("GET", consts.API_CURRENT_USER, null, this.token, true);
   }
 }

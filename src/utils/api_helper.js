@@ -5,10 +5,20 @@
  * @param {*} bearerToken
  * @param {*} data
  */
-export const api_call = async function(method, url, body = null, bearerToken) {
+export const api_call = async function(
+  method,
+  url,
+  body = null,
+  bearerToken,
+  authenReqired = false
+) {
   let headers = {
     "Content-Type": "application/json"
   };
+
+  if (authenReqired && !bearerToken) {
+    return;
+  }
 
   if (bearerToken) {
     headers = { ...headers, Authorization: `Bearer ${bearerToken}` };
@@ -25,6 +35,9 @@ export const api_call = async function(method, url, body = null, bearerToken) {
   }
 
   let result = fetch(url, config).then(response => {
+    if (!response.ok) {
+      throw response;
+    }
     return response.json();
   });
 

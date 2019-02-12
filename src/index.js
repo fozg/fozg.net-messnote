@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import Main from "./App";
 import { createGlobalStyle } from "styled-components";
 import { MessnoteState } from "./context/MessnoteContext";
+import Auth from "./auth";
 
 const GlobalStyled = createGlobalStyle`
   body {
@@ -33,7 +34,22 @@ const GlobalStyled = createGlobalStyle`
 `;
 
 function App() {
-  return (
+  const [isAuthenting, setIsAuthenting] = useState(false);
+
+  useEffect(() => {
+    checkAuth();
+  }, isAuthenting);
+
+  const checkAuth = async () => {
+    await Auth.authenUrlCallback(() => {
+      setIsAuthenting(true);
+    });
+    setIsAuthenting(false);
+  };
+
+  return isAuthenting ? (
+    "Loading..."
+  ) : (
     <MessnoteState>
       <GlobalStyled />
       <Main />
