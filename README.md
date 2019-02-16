@@ -1,7 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Idea
-[\[f\]/fastNote](https://fozg.net/fastnote) inspired by FBMessenger, when I always messages to myself to copy some text, link even an image between 
+[Messnote](https://messnote.fozg.net/) inspired by FBMessenger, when I always messages to myself to copy some text, link even an image between 
 my devices.
 
 So what's different from FBMessger ?
