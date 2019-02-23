@@ -1,8 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Idea
-[Messnote](https://messnote.fozg.net/) inspired by FBMessenger, when I always messages to myself to copy some text, link even an image between 
-my devices.
+[Messnote](https://messnote.fozg.net/) inspired by FBMessenger, when I always messages to myself to copy some text, link even an image between my devices.
+
+[Intro](https://fozg.net/blog/gioi-thieu-app-messnote)
 
 So what's different from FBMessger ?
 ## Feature
