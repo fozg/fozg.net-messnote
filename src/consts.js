@@ -8,6 +8,6 @@ export default {
   API_CURRENT_USER: API_BASEPATH + "me",
 
   AUTHEN_URL:
-    "https://accounts.fozg.net/signin?continuteUrl=" +
+    "https://accounts.fozg.net/signin?continueUrl=" +
     (isDev ? "http://localhost:3000/" : "https://messnote.fozg.net/")
 };

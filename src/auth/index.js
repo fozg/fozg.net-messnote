@@ -22,7 +22,7 @@ export default class Auth {
       );
       try {
         var user = await new MessnoteApi().get_current_user();
-        console.log("continute auth..");
+        console.log("continue auth..");
         var storeValue = {
           token: auth,
           ...user
