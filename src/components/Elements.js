@@ -14,8 +14,8 @@ export const ChatContainer = styled.div`
   flex-direction: column;
   max-width: 1200px;
   width: 100%;
-  background: #fbfbfd;
-  box-shadow: 0 15px 44px 0 rgba(64, 68, 90, 0.2);
+  background: #2f2f2f;
+  box-shadow: 0 5px 14px 0 rgba(64, 68, 90, 0.1);
   border-radius: 30px;
   justify-content: space-between;
   padding: 10px 20px;
@@ -138,19 +138,19 @@ export const SubmitButton = styled.button`
 
 export const Title = styled.h1`
   font-weight: 800;
-  color: ${props => props.color};
+  color: ${(props) => props.color};
   margin: 5px 0;
 `;
 
 export const SubTitle = styled.h3`
   font-weight: 400;
-  color: ${props => props.color};
+  color: ${(props) => props.color};
   margin: 0;
 `;
 
 export const Description = styled.h4`
   font-weight: 400;
-  color: ${props => props.color};
+  color: ${(props) => props.color};
   margin: 10px 0;
   color: #555;
   line-height: 1.35;

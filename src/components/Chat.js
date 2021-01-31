@@ -8,18 +8,18 @@ const Bubble = styled.div`
   min-height: 20px;
   padding: 0.5em 1em;
   margin-bottom: 4px;
-  align-self: ${props => (props.primary ? "flex-end" : "flex-start")};
-  background: ${props =>
+  align-self: ${(props) => (props.primary ? "flex-end" : "flex-start")};
+  background: ${(props) =>
     props.backgroundColor
       ? props.backgroundColor
       : props.primary
       ? "#4153B8"
       : "white"};
-  color: ${props =>
+  color: ${(props) =>
     props.textColor ? props.textColor : props.primary ? "white" : "#54556C"};
   border-radius: 20px;
-  box-shadow: 0 2px 4px 0 rgba(210, 210, 210, 0.5);
-  cursor: ${props => (props.isLinkify ? "pointer" : "default")};
+  box-shadow: 0 2px 4px 0 rgba(51, 51, 51, 0.3);
+  cursor: ${(props) => (props.isLinkify ? "pointer" : "default")};
 
   img {
     @media only screen and (min-width: 900px) {
@@ -28,17 +28,11 @@ const Bubble = styled.div`
   }
 `;
 
-// const ButtonsContainer = styled.div`
-//   display: flex;
-//   flex-flow: wrap;
-//   justify-content: flex-end;
-// `
-
 const Speaking = styled.li`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: ${props => (props.justifyEnd ? "flex-start" : "flex-end")};
+  justify-content: ${(props) => (props.justifyEnd ? "flex-start" : "flex-end")};
   width: 100%;
 `;
 
@@ -49,7 +43,7 @@ const DateWrapper = styled.div`
   color: #aeb8c0;
   margin-bottom: 6px;
   padding: 0 4px;
-  text-align: ${props => (props.textRight ? "right" : "left")};
+  text-align: ${(props) => (props.textRight ? "right" : "left")};
 `;
 
 const List = styled.ul`
@@ -61,9 +55,12 @@ const List = styled.ul`
 const Chat = ({ messages, bubbleClick }) => {
   const scrollbar = useRef();
 
-  useEffect(() => {
-    scrollbar.current.scrollToBottom();
-  }, [messages]);
+  useEffect(
+    () => {
+      scrollbar.current.scrollToBottom();
+    },
+    [messages]
+  );
 
   return (
     <List>
@@ -77,7 +74,7 @@ const Chat = ({ messages, bubbleClick }) => {
                 createdBy,
                 backgroundColor,
                 textColor,
-                linktify // {url}
+                linktify, // {url}
               },
               i
             ) => (
