@@ -10,13 +10,13 @@ export const MessnoteState = ({ children }) => {
   const [messnotes, setMessnotes] = useState([]);
 
   const addMessnote = ({ body, backgroundColor }) => {
-    new MessnoteApi().add_messnote(body, backgroundColor).then(response => {
+    new MessnoteApi().add_messnote(body, backgroundColor).then((response) => {
       appendMessnotes(response);
     });
   };
 
-  const appendMessnotes = newMessnotes => {
-    setMessnotes(prevMessnotes => prevMessnotes.concat(newMessnotes));
+  const appendMessnotes = (newMessnotes) => {
+    setMessnotes((prevMessnotes) => prevMessnotes.concat(newMessnotes));
   };
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export const MessnoteState = ({ children }) => {
         appendMessnotes({
           created: new Date(),
           body: "Welcome back @" + auth.username,
-          createdBy: "bot"
+          createdBy: "bot",
         });
       }, 500);
     } else {
@@ -35,7 +35,7 @@ export const MessnoteState = ({ children }) => {
         {
           created: new Date(),
           body: "You need to login first",
-          createdBy: "bot"
+          createdBy: "bot",
         },
         {
           created: new Date(),
@@ -43,8 +43,8 @@ export const MessnoteState = ({ children }) => {
           createdBy: "bot",
           backgroundColor: "#4caf50",
           textColor: "#fff",
-          linktify: { url: consts.AUTHEN_URL }
-        }
+          linktify: { url: consts.AUTHEN_URL },
+        },
       ]);
     }
   }, enabledMessnoteInput);
@@ -52,12 +52,12 @@ export const MessnoteState = ({ children }) => {
   useEffect(() => {
     new MessnoteApi()
       .get_all_messnote()
-      .then(response => {
+      .then((response) => {
         if (response.length === 0) {
           appendMessnotes({
             created: new Date(),
-            body: "I am Messnoter. Give note to me",
-            createdBy: "bot"
+            body: "I am Messnoter. Write me some note ☺🙂",
+            createdBy: "bot",
           });
         } else {
           appendMessnotes(response);
