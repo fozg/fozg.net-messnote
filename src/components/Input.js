@@ -40,7 +40,7 @@ export default function({
 }) {
   const input = useRef();
 
-  const onKeyDown = e => {
+  const onKeyDown = (e) => {
     // Ctrl Enter
     if (e.keyCode === 13 && !e.shiftKey) {
       e.preventDefault();
@@ -52,7 +52,7 @@ export default function({
     }
   };
 
-  const onPaste = e => {
+  const onPaste = (e) => {
     var pastedText = undefined;
     if (window.clipboardData && window.clipboardData.getData) {
       // IE
@@ -63,13 +63,13 @@ export default function({
     processChangeBackground(pastedText);
   };
 
-  const processChangeBackground = htmlText => {
+  const processChangeBackground = (htmlText) => {
     setTimeout(() => {
       onFoundBackgroundColor(getBackground(htmlText));
     }, 0);
   };
 
-  const _onInput = e => {
+  const _onInput = (e) => {
     onInput(e.target.innerHTML);
   };
 
@@ -88,6 +88,8 @@ export default function({
         onKeyDown={onKeyDown}
         onPaste={onPaste}
         onInput={_onInput}
+        spellCheck={false}
+        autoCorrect={false}
       />
     </Scrollbars>
   );

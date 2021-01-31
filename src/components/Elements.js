@@ -12,7 +12,8 @@ export const ChatContainer = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  max-width: 1200px;
+  max-width: 800px;
+  margin-left: 200px;
   width: 100%;
   background: #2f2f2f;
   box-shadow: 0 5px 14px 0 rgba(64, 68, 90, 0.1);

@@ -19,17 +19,17 @@ export default () => {
     addMessnote({
       body,
       createdBy: "me",
-      backgroundColor: bgColor || "#4153B8"
+      backgroundColor: bgColor || "#4153B8",
     });
   };
 
   const _onFoundBackgroundColor = function(color) {
     setBgColor(color);
   };
-  const _onInput = value => {
+  const _onInput = (value) => {
     setInputValue(value);
   };
-  const _bubbleClick = linktify => {
+  const _bubbleClick = (linktify) => {
     document.location = linktify.url;
   };
 

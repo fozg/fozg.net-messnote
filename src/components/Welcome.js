@@ -13,7 +13,7 @@ export default () => (
     <div>
       <Logo src="/MessnoteLogo.png" alt="Messnote logo" />
       <Title color="#bbb">Messnoter</Title>
-      <SubTitle color="#999">Note like a messenger</SubTitle>
+      {/* <SubTitle color="#999">Note like a messenger</SubTitle> */}
     </div>
     <div>
       <Description />
